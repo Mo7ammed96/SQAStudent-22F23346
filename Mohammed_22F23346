@@ -1,0 +1,17 @@
+ """
+  This function takes in a product name and a list of sales data for that product,
+  and returns a dictionary containing the total sales for each month.
+  """
+
+def track_product_sales(product_name, sales_data):
+  sales_by_month = {}
+  for sale in sales_data:
+    month = sale["month"]
+    if month not in sales_by_month:
+      sales_by_month[month] = 0
+    sales_by_month[month] += sale["amount"]
+  return sales_by_month
+
+# Example usage
+sales_data = [{"month": "January", "amount": 100}, {"month": "February", "amount": 200}]
+print(track_product_sales("Product A", sales_data))  # Output: {"January": 100, "February": 200}
