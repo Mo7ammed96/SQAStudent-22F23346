@@ -1,11 +1,12 @@
-def track_product_sales(product_name, sales_data):
+def track_product_sales(product_name, sales_data, currency):
   sales_by_month = {}
+  exchange_rates = {"USD": 1.0, "EUR": 0.9, "GBP": 0.8}  # Example exchange rates
   for sale in sales_data:
     month = sale["month"]
     if month not in sales_by_month:
       sales_by_month[month] = 0
-    sales_by_month[month] += sale["amount"]
+    sales_by_month[month] += sale["amount"] * exchange_rates[currency]
   return sales_by_month
 
 sales_data = [{"month": "January", "amount": 100}, {"month": "February", "amount": 200}]
-print(track_product_sales("Product A", sales_data))
+print(track_product_sales("Product A", sales_data, "EUR"))
